@@ -1,0 +1,185 @@
+package pacman;
+
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+public class PacMan_2 extends Application{
+	
+	public void start(Stage stage) throws Exception {
+			BorderPane root = new BorderPane();
+			Color c = Color.rgb(61,57,53);
+			Scene scene = new Scene (root,500,500, Color.BEIGE);
+			stage.setResizable(false);
+			stage.setScene(scene);
+			stage.setTitle("PacMan_2");
+			
+			Image image = new Image("right.gif");
+			stage.getIcons().add(image);
+			stage.show();
+			
+			Image im =new Image("ghost.gif");
+			ImageView imageview =new ImageView(im);
+			imageview.setX(300);
+			imageview.setY(450);
+			imageview.setFitHeight(30);
+			imageview.setFitWidth(30);
+			root.getChildren().add(imageview);
+			
+			Image im1 =new Image("ghost.gif");
+			ImageView iv3 =new ImageView(im1);
+			iv3.setX(250);
+			iv3.setY(80);
+			iv3.setFitHeight(30);
+			iv3.setFitWidth(30);
+			root.getChildren().add(iv3);
+			
+			Image im4 =new Image("ghost.gif");
+			ImageView iv4 =new ImageView(im4);
+			iv4.setX(10);
+			iv4.setY(300);
+			iv4.setFitHeight(30);
+			iv4.setFitWidth(30);
+			root.getChildren().add(iv4);
+			
+			Image im5 =new Image("ghost.gif");
+			ImageView iv5 =new ImageView(im5);
+			iv5.setX(50);
+			iv5.setY(300);
+			iv5.setFitHeight(30);
+			iv5.setFitWidth(30);
+			root.getChildren().add(iv5);
+			
+			Image im2 =new Image("right.gif");
+			ImageView iv =new ImageView(im2);
+			iv.setX(50);
+			iv.setY(50);
+			iv.setFitHeight(30);
+			iv.setFitWidth(30);
+			root.getChildren().add(iv);
+			
+				
+			Image im3 =new Image("left.gif");
+			ImageView iv2 =new ImageView(im3);
+			iv2.setX(100);
+			iv2.setY(50);
+			iv2.setFitHeight(30);
+			iv2.setFitWidth(30);
+			root.getChildren().add(iv2);
+			
+			Line line = new Line();
+			line.setStartX(120);
+			line.setEndX(300);
+			line.setStartY(350);
+			line.setEndY(350);
+			line.setStroke(Color.RED);
+			line.setStrokeWidth(30);
+			line.setRotate(90);
+			
+			
+			root.getChildren().add(line);
+			
+			Line line2 = new Line();
+			line2.setStartX(350);
+			line2.setEndX(500);
+			line2.setStartY(150);
+			line2.setEndY(150);
+			line2.setStroke(Color.RED);
+			line2.setStrokeWidth(30);
+			
+			
+			root.getChildren().add(line2);
+			
+			Line line3 = new Line();
+			line3.setStartX(80);
+			line3.setEndX(350);
+			line3.setStartY(350);
+			line3.setEndY(350);
+			line3.setStroke(Color.RED);
+			line3.setStrokeWidth(30);
+			
+			
+			root.getChildren().add(line3);
+			
+			Line line4 = new Line();
+			line4.setStartX(150);
+			line4.setEndX(500);
+			line4.setStartY(60);
+			line4.setEndY(60);
+			line4.setStroke(Color.RED);
+			line4.setStrokeWidth(30);
+						
+			root.getChildren().add(line4);
+			
+			Text text3 = new Text();
+			text3.setText("Score Board : ");
+			text3.setX(20);
+			text3.setY(20);
+			text3.setFont(Font.font("Helvetica", FontWeight.BOLD, FontPosture.REGULAR, 15));
+			root.getChildren().add(text3);
+}
+public static void main (String[]args) {
+launch(args);
+
+	boolean Show_Win;
+	boolean Show_GameOver;
+
+	
+	Player p1 = new Player();
+	Player p2 = new Player();
+	
+	
+	p1.setName("Fatin");
+	System.out.println("Player1 Name is " +p1.getName());
+	
+	p1.setName("Aqilah");
+	System.out.println("Player2 Name is " +p2.getName());
+	
+	
+	p1.pacman = new Pacman();   //cast p1 to pacman to use method in pacman
+	p1.pacman.setX(30);
+	p1.pacman.setY(50);
+	p1.pacman.Draw();
+	p1.pacman.eatMonster();
+	
+	p2.pacman = new Pacman(); //cast p2 to pacman to use method in pacman
+	p2.pacman.setX(50);
+	p2.pacman.setY(50);
+	p1.pacman.Draw();
+	p1.pacman.eatMonster();
+	
+	Monster monsters = new Monster(30,50);
+	monster.CanEatPacMan();
+	monster.eat_Pacman();
+	monster.respawn();
+	monster.move();
+	monster.Draw();
+	
+	Monster masterMonster = new MasterMonster();
+	((MasterMonster) masterMonster).shoot();   //DownCasting to MasterMonster
+	
+	Food food = new Food(20,50);
+	food.Draw();
+	
+	Food pf = new PowerFood(30, 100);
+	((PowerFood) pf).givesPower();
+	
+	
+	ScoreBoard scoreboard = new ScoreBoard();
+	scoreboard.AddScore();
+	scoreboard.ShowScore();
+	
+	Bomb bomb = new Bomb();
+	bomb.Exploded();
+	
+	
+	
+	

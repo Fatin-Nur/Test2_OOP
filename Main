@@ -157,11 +157,11 @@ launch(args);
 	p1.pacman.eatMonster();
 	
 	Monster monsters = new Monster(30,50);
-	monster.CanEatPacMan();
-	monster.eat_Pacman();
-	monster.respawn();
-	monster.move();
-	monster.Draw();
+	monsters.CanEatPacman();
+	monsters.EatPacman();
+	monsters.respawn();
+	monsters.move();
+	monsters.Draw();
 	
 	Monster masterMonster = new MasterMonster();
 	((MasterMonster) masterMonster).shoot();   //DownCasting to MasterMonster
